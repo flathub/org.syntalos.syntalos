@@ -213,4 +213,4 @@ modules:
   sources:
     - type: git
       url: https://github.com/syntalos/syntalos.git
-      commit: d4b1a6afa17f7159b096522f3368c8043f969727
+      tag: v2.0.0
