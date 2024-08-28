@@ -18,6 +18,7 @@ finish-args:
   - --filesystem=host
   - --socket=system-bus
   - --socket=session-bus
+  - --socket=pulseaudio
   - --allow=devel
   - --allow=bluetooth
   - --env=PATH=/app/bin:/usr/bin:/usr/sbin
