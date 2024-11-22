@@ -1,9 +1,9 @@
 id: org.syntalos.syntalos
 runtime: org.kde.Platform
-runtime-version: 5.15-23.08
+runtime-version: 5.15-24.08
 sdk: org.kde.Sdk
 base: com.riverbankcomputing.PyQt.BaseApp
-base-version: 5.15-23.08
+base-version: 5.15-24.08
 separate-locales: false
 
 command: syntalos
@@ -35,20 +35,8 @@ modules:
   buildsystem: cmake-ninja
   sources:
     - type: archive
-      url: https://github.com/KhronosGroup/OpenCL-Headers/archive/v2023.12.14/OpenCL-Headers-v2023.12.14.tar.gz
-      sha256: 407d5e109a70ec1b6cd3380ce357c21e3d3651a91caae6d0d8e1719c69a1791d
-
-- name: meson
-  buildsystem: simple
-  build-commands:
-    - python3 setup.py build
-    - python3 setup.py install --prefix=/app --root=/
-  sources:
-    - type: git
-      url: https://github.com/mesonbuild/meson.git
-      tag: '1.5.1'
-  cleanup:
-    - '*'
+      url: https://github.com/KhronosGroup/OpenCL-Headers/archive/refs/tags/v2024.10.24.tar.gz
+      sha256: 159f2a550592bae49859fee83d372acd152328fdf95c0dcd8b9409f8fad5db93
 
 - name: xxhash
   no-autogen: true
@@ -179,13 +167,12 @@ modules:
     - cmake --install .
   sources:
     - type: archive
-      url: https://github.com/pybind/pybind11/archive/refs/tags/v2.13.4.tar.gz
-      sha256: efc901aa0aab439a3fea6efeaf930b5a349fb06394bf845c64ce15a9cf8f0240
+      url: https://github.com/pybind/pybind11/archive/refs/tags/v2.13.6.tar.gz
+      sha256: e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20
 
 - modules/git.yaml
 - modules/numpy.yaml
 - modules/python/module-requirements.yaml
-- modules/python/tkinter.yaml
 - modules/aravis.yaml
 - modules/tiscamera.yaml
 - modules/qtermwidget.yaml
@@ -215,4 +202,4 @@ modules:
   sources:
     - type: git
       url: https://github.com/syntalos/syntalos.git
-      tag: v2.0.1
+      commit: bd91d3af813188142d8101a07402ae02f0cfa95a
