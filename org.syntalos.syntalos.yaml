@@ -93,13 +93,13 @@ modules:
     - NO_LAPACKE=1
     - USE_OPENMP=1
     - NO_WARMUP=1
-    - NUM_THREADS=64
+    - NUM_THREADS=128
   make-install-args:
     - PREFIX=/app
   sources:
     - type: archive
-      url: https://github.com/xianyi/OpenBLAS/releases/download/v0.3.28/OpenBLAS-0.3.28.tar.gz
-      sha256: f1003466ad074e9b0c8d421a204121100b0751c96fc6fcf3d1456bd12f8a00a1
+      url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.30/OpenBLAS-0.3.30.tar.gz
+      sha256: 27342cff518646afb4c2b976d809102e368957974c250a25ccc965e53063c95d
   cleanup:
     - "*.a"
     - "/include"
@@ -108,7 +108,7 @@ modules:
 - name: eigen3
   buildsystem: cmake-ninja
   builddir: true
-  build-extension: true # we don't cleanup headers for Syntalos C++ developer modules
+  cleanup: [] # we don't cleanup headers for Syntalos C++ developer modules
   sources:
     - type: archive
       url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -118,10 +118,24 @@ modules:
 - modules/usbutils.yaml
 - modules/ffmpeg.yaml
 
+- name: pybind11
+  buildsystem: simple
+  build-commands:
+    - python3 setup.py build
+    - cmake -G Ninja -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
+      -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib -DCMAKE_INSTALL_DATAROOTDIR:PATH=${FLATPAK_DEST}/share
+      .
+    - python3 setup.py install --prefix=${FLATPAK_DEST}
+    - cmake --build .
+    - cmake --install .
+  sources:
+    - type: archive
+      url: https://github.com/pybind/pybind11/archive/refs/tags/v2.13.6.tar.gz
+      sha256: e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20
+
 - name: opencv
   buildsystem: cmake-ninja
   builddir: true
-  build-extension: true # we don't cleanup headers for Syntalos C++ developer modules
   config-opts:
     - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     - -DOPENCV_GENERATE_PKGCONFIG=ON
@@ -160,26 +174,11 @@ modules:
     - bin
   sources:
     - type: archive
-      url: https://github.com/opencv/opencv/archive/refs/tags/4.11.0.tar.gz
-      sha256: 9a7c11f924eff5f8d8070e297b322ee68b9227e003fd600d4b8122198091665f
+      url: https://github.com/opencv/opencv/archive/refs/tags/4.12.0.tar.gz
+      sha256: 44c106d5bb47efec04e531fd93008b3fcd1d27138985c5baf4eafac0e1ec9e9d
     - type: archive
-      url: https://github.com/opencv/opencv_contrib/archive/refs/tags/4.11.0.tar.gz
-      sha256: 2dfc5957201de2aa785064711125af6abb2e80a64e2dc246aca4119b19687041
-
-- name: pybind11
-  buildsystem: simple
-  build-commands:
-    - python3 setup.py build
-    - cmake -G Ninja -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
-      -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib -DCMAKE_INSTALL_DATAROOTDIR:PATH=${FLATPAK_DEST}/share
-      .
-    - python3 setup.py install --prefix=${FLATPAK_DEST}
-    - cmake --build .
-    - cmake --install .
-  sources:
-    - type: archive
-      url: https://github.com/pybind/pybind11/archive/refs/tags/v2.13.6.tar.gz
-      sha256: e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20
+      url: https://github.com/opencv/opencv_contrib/archive/refs/tags/4.12.0.tar.gz
+      sha256: 4197722b4c5ed42b476d42e29beb29a52b6b25c34ec7b4d589c3ae5145fee98e
 
 - modules/git.yaml
 - modules/numpy.yaml
@@ -210,7 +209,7 @@ modules:
 - name: syntalos
   buildsystem: meson
   builddir: true
-  build-extension: true # we don't clean up development headers for the C++ workbench Syntalos module
+  cleanup: [] # we don't clean up development headers for the C++ workbench Syntalos module
   config-opts:
     - -Doptimize-modern-amd64=true
     - -Dudevdir=/app/lib/udev
@@ -222,4 +221,4 @@ modules:
   sources:
     - type: git
       url: https://github.com/syntalos/syntalos.git
-      tag: v2.1.0
+      tag: v2.1.1
