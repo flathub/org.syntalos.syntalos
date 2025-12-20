@@ -1,9 +1,9 @@
 id: org.syntalos.syntalos
 runtime: org.kde.Sdk
-runtime-version: '6.8'
+runtime-version: '6.10'
 sdk: org.kde.Sdk
 base: com.riverbankcomputing.PyQt.BaseApp
-base-version: '6.8'
+base-version: '6.10'
 separate-locales: false
 
 command: syntalos
@@ -141,68 +141,22 @@ modules:
         url: https://github.com/pybind/pybind11/archive/refs/tags/v2.13.6.tar.gz
         sha256: e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20
 
-  - name: opencv
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DOPENCV_GENERATE_PKGCONFIG=ON
-      - -DWITH_OPENCL=ON
-      - -DWITH_OPENGL=ON
-      - -DWITH_TBB=ON
-      - -DWITH_OPENMP=ON
-      - -DWITH_IPP=ON
-      - -DWITH_VULKAN=ON
-      - -DWITH_LAPACK=ON
-      - -DBUILD_WITH_DEBUG_INFO=OFF
-      - -DBUILD_TESTS=OFF
-      - -DBUILD_PERF_TESTS=OFF
-      - -DBUILD_EXAMPLES=OFF
-      - -DINSTALL_C_EXAMPLES=OFF
-      - -DINSTALL_PYTHON_EXAMPLES=OFF
-      - -DCPU_BASELINE=AVX2
-      - -DCPU_DISPATCH=AVX,AVX2
-      - -DWITH_1394=OFF
-      - -DWITH_V4L=ON
-      - -DWITH_PROTOBUF=ON
-      - -DWITH_QT=ON
-      - -DWITH_GTK=OFF
-      - -DBUILD_LIST=core,dnn,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python_bindings_generator,stitching,video,videoio
-    build-options:
-      env:
-        BLAS: /app/lib
-        LAPACK: /app/lib
-      arch:
-        aarch64:
-          config-opts:
-            - -DWITH_CAROTENE=OFF # fails on Flathub ARM builders and is only relevant for ARM
-          # reduced featureset for ARM64 for now: dnn disabled due to build failure
-            - -DBUILD_LIST=core,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python_bindings_generator,stitching,video,videoio
-    cleanup:
-      - bin
-    sources:
-      - type: archive
-        url: https://github.com/opencv/opencv/archive/refs/tags/4.12.0.tar.gz
-        sha256: 44c106d5bb47efec04e531fd93008b3fcd1d27138985c5baf4eafac0e1ec9e9d
-      - type: archive
-        url: https://github.com/opencv/opencv_contrib/archive/refs/tags/4.12.0.tar.gz
-        sha256: 4197722b4c5ed42b476d42e29beb29a52b6b25c34ec7b4d589c3ae5145fee98e
-
   - modules/git.yaml
   - modules/numpy.yaml
+  - modules/opencv.yaml
   - modules/python/module-requirements.yaml
   - modules/aravis.yaml
   - modules/tiscamera.yaml
   - modules/qtermwidget.yaml
 
-# Syntalos' Intan-RHX module requires Lua 5.3 for the OpalKelly FrontPanel library
+  # Syntalos' Intan-RHX module requires Lua 5.3 for the OpalKelly FrontPanel library
   - shared-modules/lua5.3/lua-5.3.5.json
   - name: okfrontpanel-liblua-compat-symlink
     buildsystem: simple
     build-commands:
       - ln -sf liblua.so.5.3 /app/lib/liblua5.3.so.0
 
-# the Miniscope module needs libminiscope via PoMiDAQ
+  # the Miniscope module needs libminiscope via PoMiDAQ
   - name: pomidaq
     buildsystem: cmake-ninja
     builddir: true

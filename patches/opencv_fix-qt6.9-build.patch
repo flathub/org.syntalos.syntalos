@@ -1,0 +1,36 @@
+From e7728bb27db9732629bb3f7c7c2c33fe3930b31a Mon Sep 17 00:00:00 2001
+From: Atri Bhattacharya <A.Bhattacharya@uliege.be>
+Date: Wed, 15 Oct 2025 21:49:04 +0530
+Subject: [PATCH] Fixed linking for HighGUI against Qt 6.9 and newer
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Use `link_libraries` instead of `add_defintions` to link against Qt 6.9
+and newer to avoid un-expanded generator expressions from Qt cmake files
+being appended to linker flags when building the HighGUI module.
+
+The actual bug is likely in how Qt cmake files end up with these
+un-expanded generator expressions in the first place — see discussion in
+https://bugreports.qt.io/browse/QTBUG-134774 — but the recommended way
+to link against the library is to use `link_libraries` anyway, so this
+fix should do the trick.
+
+Fixes issue #27223.
+---
+ modules/highgui/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/highgui/CMakeLists.txt b/modules/highgui/CMakeLists.txt
+index f0a668e4b5ae..ae9c49c1cfae 100644
+--- a/modules/highgui/CMakeLists.txt
++++ b/modules/highgui/CMakeLists.txt
+@@ -125,7 +125,7 @@ elseif(HAVE_QT)
+     endif()
+ 
+     foreach(dt_dep ${qt_deps})
+-      add_definitions(${Qt${QT_VERSION_MAJOR}${dt_dep}_DEFINITIONS})
++      link_libraries(${Qt${QT_VERSION_MAJOR}${dt_dep}})
+       include_directories(${Qt${QT_VERSION_MAJOR}${dt_dep}_INCLUDE_DIRS})
+       list(APPEND HIGHGUI_LIBRARIES ${Qt${QT_VERSION_MAJOR}${dt_dep}_LIBRARIES})
+     endforeach()

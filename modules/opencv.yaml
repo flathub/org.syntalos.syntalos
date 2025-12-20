@@ -1,0 +1,55 @@
+name: opencv
+modules:
+
+- name: opencv
+  buildsystem: cmake-ninja
+  builddir: true
+  config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  - -DOPENCV_EXTRA_MODULES_PATH=../contrib/modules
+  - -DOPENCV_GENERATE_PKGCONFIG=ON
+  - -DWITH_OPENCL=ON
+  - -DWITH_OPENGL=ON
+  - -DWITH_TBB=ON
+  - -DWITH_OPENMP=ON
+  - -DWITH_IPP=ON
+  - -DWITH_VULKAN=ON
+  - -DWITH_LAPACK=ON
+  - -DBUILD_WITH_DEBUG_INFO=OFF
+  - -DBUILD_TESTS=OFF
+  - -DBUILD_PERF_TESTS=OFF
+  - -DBUILD_EXAMPLES=OFF
+  - -DBUILD_opencv_python2=OFF
+  - -DBUILD_opencv_python3=ON
+  - -DINSTALL_C_EXAMPLES=OFF
+  - -DINSTALL_PYTHON_EXAMPLES=OFF
+  - -DCPU_BASELINE=AVX2
+  - -DCPU_DISPATCH=AVX,AVX2
+  - -DWITH_1394=OFF
+  - -DWITH_V4L=ON
+  - -DWITH_PROTOBUF=ON
+  - -DWITH_QT=ON
+  - -DWITH_GTK=OFF
+  - -DBUILD_LIST=core,dnn,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python_bindings_generator,stitching,video,videoio
+  build-options:
+    env:
+      BLAS: /app/lib
+      LAPACK: /app/lib
+    arch:
+      aarch64:
+        config-opts:
+          - -DWITH_CAROTENE=OFF # fails on Flathub ARM builders and is only relevant for ARM
+          # reduced featureset for ARM64 for now: dnn disabled due to build failure
+          - -DBUILD_LIST=core,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python_bindings_generator,stitching,video,videoio
+  cleanup:
+    - bin
+  sources:
+    - type: archive
+      url: https://github.com/opencv/opencv/archive/refs/tags/4.12.0.tar.gz
+      sha256: 44c106d5bb47efec04e531fd93008b3fcd1d27138985c5baf4eafac0e1ec9e9d
+    - type: archive
+      dest: contrib
+      url: https://github.com/opencv/opencv_contrib/archive/refs/tags/4.12.0.tar.gz
+      sha256: 4197722b4c5ed42b476d42e29beb29a52b6b25c34ec7b4d589c3ae5145fee98e
+    - type: patch
+      path: ../patches/opencv_fix-qt6.9-build.patch
