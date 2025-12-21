@@ -1,32 +1,41 @@
-# Generated with flatpak-pip-generator --yaml --runtime org.kde.Sdk/x86_64/6.8 -r requirements.txt
+# Generated with flatpak-pip-generator --yaml --runtime org.kde.Sdk//6.10 -r requirements.txt
 build-commands: []
 buildsystem: simple
 modules:
-  - name: python3-virtualenv
-    buildsystem: simple
-    build-commands:
-      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "virtualenv" --no-build-isolation
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/91/a1/cf2472db20f7ce4a6be1253a81cfdf85ad9c7885ffbed7047fb72c24cf87/distlib-0.3.9-py2.py3-none-any.whl
-        sha256: 47f8c22fd27c27e25a65601af709b38e4f0a45ea4fc2e710f65755fa8caaaf87
-      - type: file
-        url: https://files.pythonhosted.org/packages/4d/36/2a115987e2d8c300a974597416d9de88f2444426de9571f4b59b2cca3acc/filelock-3.18.0-py3-none-any.whl
-        sha256: c401f4f8377c4464e6db25fff06205fd89bdd83b65eb0488ed1b160f780e21de
-      - type: file
-        url: https://files.pythonhosted.org/packages/6d/45/59578566b3275b8fd9157885918fcd0c4d74162928a5310926887b856a51/platformdirs-4.3.7-py3-none-any.whl
-        sha256: a03875334331946f13c549dbd8f4bac7a13a50a895a0eb1e8c6a8ace80d40a94
-      - type: file
-        url: https://files.pythonhosted.org/packages/4c/ed/3cfeb48175f0671ec430ede81f628f9fb2b1084c9064ca67ebe8c0ed6a05/virtualenv-20.30.0-py3-none-any.whl
-        sha256: e34302959180fca3af42d1800df014b35019490b119eba981af27f2fa486e5d6
-  - name: python3-tomlkit
-    buildsystem: simple
-    build-commands:
-      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "tomlkit" --no-build-isolation
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/f9/b6/a447b5e4ec71e13871be01ba81f5dfc9d0af7e473da256ff46bc0e24026f/tomlkit-0.13.2-py3-none-any.whl
-        sha256: 7a974427f6e119197f670fbbbeae7bef749a6c14e793db934baefc1b5f03efde
+- name: python3-virtualenv
+  buildsystem: simple
+  build-commands:
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+    --prefix=${FLATPAK_DEST} "virtualenv" --no-build-isolation
+  sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/33/6b/e0547afaf41bf2c42e52430072fa5658766e3d65bd4b03a563d1b6336f57/distlib-0.4.0-py2.py3-none-any.whl
+    sha256: 9659f7d87e46584a30b5780e43ac7a2143098441670ff0a49d5f9034c54a6c16
+  - type: file
+    url: https://files.pythonhosted.org/packages/e3/7f/a1a97644e39e7316d850784c642093c99df1290a460df4ede27659056834/filelock-3.20.1-py3-none-any.whl
+    sha256: 15d9e9a67306188a44baa72f569d2bfd803076269365fdea0934385da4dc361a
+  - type: file
+    url: https://files.pythonhosted.org/packages/cb/28/3bfe2fa5a7b9c46fe7e13c97bda14c895fb10fa2ebf1d0abb90e0cea7ee1/platformdirs-4.5.1-py3-none-any.whl
+    sha256: d03afa3963c806a9bed9d5125c8f4cb2fdaf74a55ab60e5d59b3fde758104d31
+  - type: file
+    url: https://files.pythonhosted.org/packages/79/0c/c05523fa3181fdf0c9c52a6ba91a23fbf3246cc095f26f6516f9c60e6771/virtualenv-20.35.4-py3-none-any.whl
+    sha256: c21c9cede36c9753eeade68ba7d523529f228a403463376cf821eaae2b650f1b
+- name: python3-tomlkit
+  buildsystem: simple
+  build-commands:
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+    --prefix=${FLATPAK_DEST} "tomlkit" --no-build-isolation
+  sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/bd/75/8539d011f6be8e29f339c42e633aae3cb73bffa95dd0f9adec09b9c58e85/tomlkit-0.13.3-py3-none-any.whl
+    sha256: c89c649d79ee40629a9fda55f8ace8c6a1b42deb912b2a8fd8d942ddadb606b0
+- name: python3-pyserial
+  buildsystem: simple
+  build-commands:
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+    --prefix=${FLATPAK_DEST} "pyserial" --no-build-isolation
+  sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/07/bc/587a445451b253b285629263eb51c2d8e9bcea4fc97826266d186f96f558/pyserial-3.5-py2.py3-none-any.whl
+    sha256: c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0
 name: python3-requirements
