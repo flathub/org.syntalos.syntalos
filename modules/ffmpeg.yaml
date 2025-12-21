@@ -81,5 +81,3 @@ modules:
     - type: archive
       url: https://ffmpeg.org/releases/ffmpeg-7.1.3.tar.xz
       sha256: f0bf043299db9e3caacb435a712fc541fbb07df613c4b893e8b77e67baf3adbe
-    - type: patch
-      path: ../patches/ffmpeg_svtav1-api-fix.patch
