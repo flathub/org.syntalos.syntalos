@@ -30,17 +30,26 @@ modules:
   - -DWITH_PROTOBUF=ON
   - -DWITH_QT=ON
   - -DWITH_GTK=OFF
-  - -DBUILD_LIST=core,dnn,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python_bindings_generator,stitching,video,videoio
+  - -DBUILD_LIST=core,dnn,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python3,python_bindings_generator,stitching,video,videoio
+  # ugly things so OpenCV manages to find Python
+  - -DOPENCV_SKIP_PYTHON_LOADER=ON
+  - -DPYTHON3_EXECUTABLE=/usr/bin/python3
+  - -DOPENCV_PYTHON3_INSTALL_PATH=/app/lib/python3.13/site-packages
+  - -DPYTHON3_INCLUDE_DIR=/usr/include/python3.13
   build-options:
     env:
       BLAS: /app/lib
       LAPACK: /app/lib
     arch:
+      x86_64:
+        config-opts:
+          - -DPYTHON3_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.13.so
       aarch64:
         config-opts:
           - -DWITH_CAROTENE=OFF # fails on Flathub ARM builders and is only relevant for ARM
           # reduced featureset for ARM64 for now: dnn disabled due to build failure
-          - -DBUILD_LIST=core,features2d,flann,highgui,imgcodecs,imgproc,ml,objdetect,photo,python_bindings_generator,stitching,video,videoio
+          - -DBUILD_opencv_dnn=OFF
+          - -DPYTHON3_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython3.13.so
   cleanup:
     - bin
   sources:
