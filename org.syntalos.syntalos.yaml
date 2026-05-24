@@ -5,6 +5,8 @@ sdk: org.kde.Sdk
 base: com.riverbankcomputing.PyQt.BaseApp
 base-version: '6.10'
 separate-locales: false
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
 
 command: syntalos
 rename-icon: syntalos
@@ -58,19 +60,57 @@ modules:
         url: https://github.com/marzer/tomlplusplus/archive/refs/tags/v3.4.0.tar.gz
         sha256: 8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
 
-  - name: iceoryx
+  - name: blake3
     buildsystem: cmake-ninja
     builddir: true
-    subdir: iceoryx_meta/
+    subdir: c/
     config-opts:
-      - -DBUILD_DOC=OFF
-      - -DBUILD_SHARED_LIBS=ON
-      - -DINTROSPECTION=ON
-      - -DTOML_CONFIG=OFF
+      - -DBUILD_SHARED_LIBS:BOOL=YES
     sources:
       - type: archive
-        url: https://github.com/eclipse-iceoryx/iceoryx/archive/refs/tags/v2.0.6.tar.gz
-        sha256: a2add8ffee0c3357ef985cc46c7de79ccb754ea2bed02c61f2ff805ab2c869f1
+        url: https://github.com/BLAKE3-team/BLAKE3/archive/refs/tags/1.8.5.tar.gz
+        sha256: 220bd81286e2a0585beac66d41ac3f4c2c33ae8a4e339fc88cf22d5e00514fe9
+
+  - name: iceoryx2
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DBUILD_CXX=ON
+      - -DBUILD_TESTING=OFF
+      - -DBUILD_EXAMPLES=OFF
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/iceoryx2/cargo
+        CARGO_NET_OFFLINE: 'true'
+    sources:
+      - type: archive
+        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.9.0.tar.gz
+        sha256: 907b49c4fdc2ad16bb723fe579c6222b982cf7cda7eda1bfa95ea0fcf887ef14
+      - modules/iceoryx2-cargo-sources.json
+
+  - name: quill
+    buildsystem: meson
+    builddir: true
+    sources:
+      - type: archive
+        url: https://github.com/odygrd/quill/releases/download/v11.1.0/quill-11.1.0.zip
+        sha256: 2c2aa4c09e11965215656cc11233d5612ee20df4e0cf4664a0b1f74af0059360
+
+  - name: mimalloc
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DMI_BUILD_SHARED:BOOL=ON
+      - -DMI_BUILD_STATIC:BOOL=OFF
+      - -DMI_BUILD_OBJECT:BOOL=ON
+      - -DMI_OVERRIDE:BOOL=ON
+      - -DMI_OPT_ARCH:BOOL=ON
+      - -DMI_INSTALL_TOPLEVEL:BOOL=ON
+    sources:
+      - type: archive
+        url: https://github.com/microsoft/mimalloc/releases/download/v3.3.2/mimalloc-v3.3.2-source.tar.gz
+        sha256: 7ced84a659a95454ce08b725af56331164e6b8673310e5a9a5c612576145456f
 
   - name: openblas
     no-autogen: true
@@ -113,19 +153,16 @@ modules:
   - modules/ffmpeg.yaml
 
   - name: pybind11
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py build
-      - cmake -G Ninja -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
-        -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib -DCMAKE_INSTALL_DATAROOTDIR:PATH=${FLATPAK_DEST}/share
-        .
-      - python3 setup.py install --prefix=${FLATPAK_DEST}
-      - cmake --build .
-      - cmake --install .
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DPYBIND11_INSTALL:BOOL=ON
+      - -DPYBIND11_TEST:BOOL=OFF
+      - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.13
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/refs/tags/v2.13.6.tar.gz
-        sha256: e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20
+        url: https://github.com/pybind/pybind11/archive/refs/tags/v3.0.4.tar.gz
+        sha256: 74b6a2c2b4573a400cafb6ecbf60c98df300cd3d0041296b913d02b2cbbb2676
 
   - modules/git.yaml
   - modules/numpy.yaml
@@ -134,6 +171,8 @@ modules:
   - modules/aravis.yaml
   - modules/tiscamera.yaml
   - modules/qtermwidget.yaml
+  - modules/zeromq.yaml
+  - modules/winpos-qt.yaml
 
   # Syntalos' Intan-RHX module requires Lua 5.3 for the OpalKelly FrontPanel library
   - shared-modules/lua5.3/lua-5.3.5.json
@@ -165,8 +204,11 @@ modules:
       arch:
         aarch64:
           config-opts:
-            - -Dmodules=camera-arv,camera-tis,miniscope,plot
+            - -Dmodules=camera-arv,camera-tis,miniscope
     sources:
       - type: git
         url: https://github.com/syntalos/syntalos.git
-        tag: v2.1.3
+        tag: v3.0.0
+        commit: 9865513a6975e5f452421df8feb3753bcb98d8a1
+        # there's broken LFS objects in liboni (which we don#t need), so we can't have this on
+        disable-lfs: true
