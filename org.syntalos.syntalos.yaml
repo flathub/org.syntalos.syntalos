@@ -85,8 +85,8 @@ modules:
         CARGO_NET_OFFLINE: 'true'
     sources:
       - type: archive
-        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.9.0.tar.gz
-        sha256: 907b49c4fdc2ad16bb723fe579c6222b982cf7cda7eda1bfa95ea0fcf887ef14
+        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.9.1.tar.gz
+        sha256: d76043b1639267086ba6a7f2f8c9e2b7ddb7e38eb3757106cbaf24ee7aadaab5
       - modules/iceoryx2-cargo-sources.json
 
   - name: quill
@@ -167,12 +167,15 @@ modules:
   - modules/git.yaml
   - modules/numpy.yaml
   - modules/opencv.yaml
-  - modules/python/module-requirements.yaml
-  - modules/aravis.yaml
-  - modules/tiscamera.yaml
+  - modules/iir1.yaml
   - modules/qtermwidget.yaml
   - modules/zeromq.yaml
   - modules/winpos-qt.yaml
+  - modules/nlohmann-json.yaml
+  - modules/python/module-requirements.yaml
+  - modules/aravis.yaml
+  - modules/libcamera.yaml
+  - modules/tiscamera.yaml
 
   # Syntalos' Intan-RHX module requires Lua 5.3 for the OpalKelly FrontPanel library
   - shared-modules/lua5.3/lua-5.3.5.json
@@ -204,11 +207,11 @@ modules:
       arch:
         aarch64:
           config-opts:
-            - -Dmodules=camera-arv,camera-tis,miniscope
+            - -Ddisabled-modules=intan-rhx,open-ephys-acq
     sources:
       - type: git
         url: https://github.com/syntalos/syntalos.git
-        tag: v3.0.0
-        commit: 9865513a6975e5f452421df8feb3753bcb98d8a1
+        tag: v3.1.0
+        commit: 53d6bc747ceedad82dcb98b71bfe1799c7710cfb
         # there's broken LFS objects in liboni (which we don#t need), so we can't have this on
         disable-lfs: true
