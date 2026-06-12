@@ -211,7 +211,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/syntalos/syntalos.git
-        tag: v3.1.0
-        commit: 53d6bc747ceedad82dcb98b71bfe1799c7710cfb
+        tag: v3.1.1
+        commit: 98d9b4ca0042097b58baa172bbbd046580d0779d
         # there's broken LFS objects in liboni (which we don#t need), so we can't have this on
         disable-lfs: true
