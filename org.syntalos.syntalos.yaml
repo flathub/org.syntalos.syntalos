@@ -23,6 +23,7 @@ finish-args:
   - --socket=pulseaudio
   - --allow=devel
   - --allow=bluetooth
+  - --filesystem=/run/udev:ro  # needed for libcamera's udev enumeration & some controllers
   - --filesystem=xdg-run/pipewire-0:ro
   - --env=PATH=/app/bin:/usr/bin:/usr/sbin
   - --env=GST_PLUGIN_PATH=/app/lib/gstreamer-1.0:/usr/lib/extensions/gstreamer-1.0
