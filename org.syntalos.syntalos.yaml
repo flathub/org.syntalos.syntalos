@@ -1,9 +1,9 @@
 id: org.syntalos.syntalos
 runtime: org.kde.Sdk
-runtime-version: '6.10'
+runtime-version: '6.11'
 sdk: org.kde.Sdk
 base: com.riverbankcomputing.PyQt.BaseApp
-base-version: '6.10'
+base-version: '6.11'
 separate-locales: false
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
@@ -50,8 +50,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/KhronosGroup/OpenCL-Headers/archive/refs/tags/v2024.10.24.tar.gz
-        sha256: 159f2a550592bae49859fee83d372acd152328fdf95c0dcd8b9409f8fad5db93
+        url: https://github.com/KhronosGroup/OpenCL-Headers/archive/refs/tags/v2026.05.29.tar.gz
+        sha256: d9e6c48357de5002da11ce45de600e0c3ffe6ab4f628a3b9fe2b38603161658a
 
   - name: toml++
     buildsystem: meson
@@ -69,8 +69,8 @@ modules:
       - -DBUILD_SHARED_LIBS:BOOL=YES
     sources:
       - type: archive
-        url: https://github.com/BLAKE3-team/BLAKE3/archive/refs/tags/1.8.5.tar.gz
-        sha256: 220bd81286e2a0585beac66d41ac3f4c2c33ae8a4e339fc88cf22d5e00514fe9
+        url: https://github.com/BLAKE3-team/BLAKE3/archive/refs/tags/1.8.7.tar.gz
+        sha256: c6782a28842b1c0478524ac06a4f2ede784038ee298d6e2162c0b089c4306a3c
 
   - name: iceoryx2
     buildsystem: cmake-ninja
@@ -86,8 +86,8 @@ modules:
         CARGO_NET_OFFLINE: 'true'
     sources:
       - type: archive
-        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.9.1.tar.gz
-        sha256: d76043b1639267086ba6a7f2f8c9e2b7ddb7e38eb3757106cbaf24ee7aadaab5
+        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.9.3.tar.gz
+        sha256: 2b4438364614b390938354ac766c198bb2ad63a2bde84a142c53f555fe8f4bc1
       - modules/iceoryx2-cargo-sources.json
 
   - name: quill
@@ -95,8 +95,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/odygrd/quill/releases/download/v11.1.0/quill-11.1.0.zip
-        sha256: 2c2aa4c09e11965215656cc11233d5612ee20df4e0cf4664a0b1f74af0059360
+        url: https://github.com/odygrd/quill/releases/download/v13.0.0/quill-13.0.0.zip
+        sha256: efb6ac9eea48633b05ebffae1dfee00fb065199bdc7686ea3353f77de09bbfa9
 
   - name: mimalloc
     buildsystem: cmake-ninja
@@ -104,14 +104,14 @@ modules:
     config-opts:
       - -DMI_BUILD_SHARED:BOOL=ON
       - -DMI_BUILD_STATIC:BOOL=OFF
-      - -DMI_BUILD_OBJECT:BOOL=ON
+      - -DMI_BUILD_OBJECT:BOOL=OFF
       - -DMI_OVERRIDE:BOOL=ON
       - -DMI_OPT_ARCH:BOOL=ON
       - -DMI_INSTALL_TOPLEVEL:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/microsoft/mimalloc/releases/download/v3.3.2/mimalloc-v3.3.2-source.tar.gz
-        sha256: 7ced84a659a95454ce08b725af56331164e6b8673310e5a9a5c612576145456f
+        url: https://github.com/microsoft/mimalloc/releases/download/v3.5.1/mimalloc-v3.5.1-source.tar.gz
+        sha256: bff20d5423e63d751858dcc4f6ca2d346e16a84f8410f868bc3a298996c1ea1e
 
   - name: openblas
     no-autogen: true
@@ -162,8 +162,8 @@ modules:
       - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.13
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/refs/tags/v3.0.4.tar.gz
-        sha256: 74b6a2c2b4573a400cafb6ecbf60c98df300cd3d0041296b913d02b2cbbb2676
+        url: https://github.com/pybind/pybind11/archive/refs/tags/v3.1.0.tar.gz
+        sha256: ef712655692a2e9bf7bb7874c022564a45f91d847ddee987e720cd9e28849665
 
   - modules/git.yaml
   - modules/numpy.yaml
@@ -212,7 +212,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/syntalos/syntalos.git
-        tag: v3.1.1
-        commit: 98d9b4ca0042097b58baa172bbbd046580d0779d
+        tag: v3.2.0
+        commit: c16eafd7647d985af177203a98f0a21f4cd44566
         # there's broken LFS objects in liboni (which we don#t need), so we can't have this on
         disable-lfs: true
