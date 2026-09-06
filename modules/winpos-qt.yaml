@@ -6,4 +6,5 @@ config-opts:
 sources:
   - type: git
     url: https://github.com/ximion/libwinpos.git
-    commit: e8144d7960b349a486cafcd6a4eb69fb4329c0e5
+    tag: v0.1.1
+    commit: 51be2d9cc18cecb03674bb0f855a75a2dda88efc
