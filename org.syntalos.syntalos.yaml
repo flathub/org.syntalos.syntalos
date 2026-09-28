@@ -86,8 +86,8 @@ modules:
         CARGO_NET_OFFLINE: 'true'
     sources:
       - type: archive
-        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.9.3.tar.gz
-        sha256: 2b4438364614b390938354ac766c198bb2ad63a2bde84a142c53f555fe8f4bc1
+        url: https://github.com/eclipse-iceoryx/iceoryx2/archive/refs/tags/v0.10.0.tar.gz
+        sha256: ef14e6b8f7cbb003dc0f67f06dd00436fe4ed3ddd97154efde5796bc441d0265
       - modules/iceoryx2-cargo-sources.json
 
   - name: quill
@@ -110,8 +110,8 @@ modules:
       - -DMI_INSTALL_TOPLEVEL:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/microsoft/mimalloc/releases/download/v3.5.1/mimalloc-v3.5.1-source.tar.gz
-        sha256: bff20d5423e63d751858dcc4f6ca2d346e16a84f8410f868bc3a298996c1ea1e
+        url: https://github.com/microsoft/mimalloc/releases/download/v3.5.3/mimalloc-v3.5.3-source.tar.gz
+        sha256: 43857a9e4f26412e970cbe49635d0465c2de6e77a697ce3d4b926a473d1045ca
 
   - name: openblas
     no-autogen: true
@@ -147,8 +147,8 @@ modules:
     cleanup: [] # we don't cleanup headers for Syntalos C++ developer modules
     sources:
       - type: archive
-        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
-        sha256: b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
+        url: https://gitlab.com/libeigen/eigen/-/archive/5.0.1/eigen-5.0.1.tar.bz2
+        sha256: e4de6b08f33fd8b8985d2f204381408c660bffa6170ac65b68ae1bd3cd575c0a
 
   - modules/usbutils.yaml
   - modules/ffmpeg.yaml
@@ -195,7 +195,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/bothlab/pomidaq.git
-        tag: v0.6.1
+        commit: 99b92401e5576d4ce10caefc03c25cceecb298cd
 
   - name: syntalos
     buildsystem: meson
@@ -212,7 +212,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/syntalos/syntalos.git
-        tag: v3.2.0
-        commit: c16eafd7647d985af177203a98f0a21f4cd44566
+        tag: v3.2.1
+        commit: 6de2f6153b596d34d78762aa1c0c92b8e6fdd69b
         # there's broken LFS objects in liboni (which we don#t need), so we can't have this on
         disable-lfs: true

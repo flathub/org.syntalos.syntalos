@@ -49,7 +49,7 @@ modules:
   sources:
     - type: git
       url: https://chromium.googlesource.com/libyuv/libyuv.git
-      commit: 500f45652c459cfccd20f83f297eb66cb7b015cb
+      commit: 39445fa162afd60f7266f70ff6a0fba564c3acae
 
 - name: libcamera
   buildsystem: meson
