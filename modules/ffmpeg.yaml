@@ -15,7 +15,7 @@ modules:
   sources:
     - type: git
       url: https://code.videolan.org/videolan/x264.git
-      commit: ab393c85eb23c522684d2494a8a5665cebc315a9
+      commit: b35605ace3ddf7c1a5d67a2eb553f034aef41d55
 
 - name: x265
   buildsystem: cmake-ninja
@@ -28,10 +28,8 @@ modules:
     - -DENABLE_CLI=OFF
   sources:
     - type: archive
-      url: https://deb.debian.org/debian/pool/main/x/x265/x265_4.1.orig.tar.xz
-      sha256: 85abb8a850000bf693947459c42a666a3ecd6de10a2ac6b3c6647554b14d3270
-    - type: patch
-      path: ../patches/x265_set-minimum-cmake-version-to-3.10.patch
+      url: https://deb.debian.org/debian/pool/main/x/x265/x265_4.2.orig.tar.gz
+      sha256: 40b1ea0453e0309f0eba934e0ddf533f8f6295966679e8894e8f1c1c8d5e1210
 
 - name: ffmpeg
   config-opts:
@@ -79,5 +77,5 @@ modules:
     - /share/ffmpeg/examples
   sources:
     - type: archive
-      url: https://ffmpeg.org/releases/ffmpeg-8.1.2.tar.xz
-      sha256: 464beb5e7bf0c311e68b45ae2f04e9cc2af88851abb4082231742a74d97b524c
+      url: https://ffmpeg.org/releases/ffmpeg-9.0.2.tar.xz
+      sha256: 8c3850283eb25fa026482078a04051e0be17347b09ef81a0849bec15a96e002e

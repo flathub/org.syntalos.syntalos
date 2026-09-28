@@ -2,7 +2,10 @@ name: nlohmann-json
 modules:
 
 - name: nlohmann-json
-  buildsystem: meson
+  buildsystem: cmake-ninja
+  builddir: true
+  config-opts:
+    - -DJSON_BuildTests=OFF
   sources:
    - type: archive
      url: https://github.com/nlohmann/json/archive/refs/tags/v3.12.0.tar.gz
