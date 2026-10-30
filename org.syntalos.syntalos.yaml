@@ -95,8 +95,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/odygrd/quill/releases/download/v13.0.0/quill-13.0.0.zip
-        sha256: efb6ac9eea48633b05ebffae1dfee00fb065199bdc7686ea3353f77de09bbfa9
+        url: https://github.com/odygrd/quill/releases/download/v13.1.0/quill-13.1.0.zip
+        sha256: f4dbdc05f4cb65964a46cfd0b0a3f6508cadd9f1022dd50f026bf207d3f5e183
 
   - name: mimalloc
     buildsystem: cmake-ninja
@@ -110,8 +110,8 @@ modules:
       - -DMI_INSTALL_TOPLEVEL:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/microsoft/mimalloc/releases/download/v3.5.3/mimalloc-v3.5.3-source.tar.gz
-        sha256: 43857a9e4f26412e970cbe49635d0465c2de6e77a697ce3d4b926a473d1045ca
+        url: https://github.com/microsoft/mimalloc/releases/download/v3.6.0/mimalloc-v3.6.0-source.tar.gz
+        sha256: 05b45988f07a940831ad156f10b0aeb84805b1f030004488939efe08f718b4c7
 
   - name: openblas
     no-autogen: true
@@ -195,7 +195,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/bothlab/pomidaq.git
-        commit: 99b92401e5576d4ce10caefc03c25cceecb298cd
+        tag: v1.0.0
+        commit: 35a55a8327d82f89791a4bcbc4d5ed436834f540
 
   - name: syntalos
     buildsystem: meson
@@ -212,7 +213,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/syntalos/syntalos.git
-        tag: v3.2.1
-        commit: 6de2f6153b596d34d78762aa1c0c92b8e6fdd69b
-        # there's broken LFS objects in liboni (which we don#t need), so we can't have this on
+        tag: v3.2.2
+        commit: fcc35fbe83bda16431d7464964a2c0dc78ea1f6b
+        # there's broken LFS objects in liboni (which we don't need), so we can't have this on
         disable-lfs: true
