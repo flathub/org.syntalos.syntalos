@@ -10,8 +10,8 @@ modules:
     - "*.la"
   sources:
     - type: archive
-      url: https://libzip.org/download/libzip-1.11.4.tar.xz
-      sha256: 8a247f57d1e3e6f6d11413b12a6f28a9d388de110adc0ec608d893180ed7097b
+      url: https://libzip.org/download/libzip-1.12.1.tar.xz
+      sha256: c40062022a1963c80573d48f6070792297cecd7c6bffe3aefcac0d8b9bee8913
 
 - name: tiscamera
   buildsystem: cmake-ninja
@@ -33,4 +33,5 @@ modules:
   sources:
     - type: git
       url: https://github.com/TheImagingSource/tiscamera.git
-      commit: a0ece27ef145596fe356f0bfdb41547ea4a7604e
+      tag: v-tiscamera-1.1.2
+      commit: b53d8d80e5026c3bc71ba7207c3b2fcd7c0557ff

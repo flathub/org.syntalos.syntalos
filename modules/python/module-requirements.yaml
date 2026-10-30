@@ -10,20 +10,20 @@ modules:
         --prefix=${FLATPAK_DEST} "virtualenv" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/02/08/9c41fb51ab5b43eb21674aff13df270e8ba6c4b29c8624e328dc7a9482af/distlib-0.4.3-py2.py3-none-any.whl
-        sha256: 4b0ce306c966eb73bc3a7b6abad017c556dadd92c44701562cd528ac7fde4d5b
+        url: https://files.pythonhosted.org/packages/c1/2b/238f02a4927fa2e27aa995371d240a468b52e42eae44a678434aff736b38/distlib-0.4.4-py2.py3-none-any.whl
+        sha256: cf09d55b1e85a89576b036aeb71550bfd68320f3f21761ca329eadadad918638
       - type: file
-        url: https://files.pythonhosted.org/packages/62/34/d90d7e7ef972900e09f45b9c0661376dd03e77fece26ee83ec93b7719bae/filelock-4.0.5-py3-none-any.whl
-        sha256: be9166068623636cedcad7b2ef735b04e5fb4344d978e09fd6fbd6ede06f14f0
+        url: https://files.pythonhosted.org/packages/e0/1b/5e74289a1878e666bb4b65fe5805a04cafcac2aa5f519ef1ead67ef91c56/filelock-4.2.4-py3-none-any.whl
+        sha256: 301241438c57936ef93f4243a94f2559022268bfcf9b375a9a72eb0f8db8358e
       - type: file
-        url: https://files.pythonhosted.org/packages/40/31/1521c38d175108ac395941adbcb9f11e085340bed81ad166e8ad8c21c17b/platformdirs-4.12.1-py3-none-any.whl
-        sha256: 7f251621befae78b2cb74616f9fc99d3fa3db0afba5035987731f8dcd430337d
+        url: https://files.pythonhosted.org/packages/69/2b/887969ef4bb53e0cb271dc7c3f4a73d50c5d58bb88aeaae311e3340cd57e/platformdirs-4.14.0-py3-none-any.whl
+        sha256: 1dadfc59a8a5d7565b3d9270ae8fa71c065595352c4277b41c11ee6c222c4b91
       - type: file
-        url: https://files.pythonhosted.org/packages/16/7d/e9ffbadfbf89c93848412d04594135c4ae8c1d37d9e053b9c3ed718fabc4/python_discovery-1.6.1-py3-none-any.whl
-        sha256: d43fcdef879fe795352bd13ccf8d185ba5a9f86f36cfcd00529f596e737442b3
+        url: https://files.pythonhosted.org/packages/57/e4/1c7c388e874222c28afb92fe3ebfeebe55555276523ba7aab0a82a10b2b5/python_discovery-1.6.7-py3-none-any.whl
+        sha256: 5422f67e5f533bb02d7b73de1c422ed74037536fd869e05156c07565926ec68e
       - type: file
-        url: https://files.pythonhosted.org/packages/c5/2c/8b107f9e029da006c39af38a0a150dde57ecce48b495c79917d1ad963821/virtualenv-21.13.0-py3-none-any.whl
-        sha256: ca16ceba89e58d8e2f376769349c63f3ed66f79881ae68bc13e19a9d50e0e987
+        url: https://files.pythonhosted.org/packages/ce/23/cdab19d3a9da42ca0938081e163e25f81e610141800ead743ba1ee881f0e/virtualenv-21.15.1-py3-none-any.whl
+        sha256: 0d14a991689c67600316880eadc0a37b7690cb632e3b4ac67e2bc05b2b2e24a4
   - name: python3-tomlkit
     buildsystem: simple
     build-commands:
@@ -31,8 +31,8 @@ modules:
         --prefix=${FLATPAK_DEST} "tomlkit" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/13/bc/8c13eb66537dce1d2bd3a57132902f38d0e7f5bb46fa9f4daed9fe9d76ee/tomlkit-0.15.1-py3-none-any.whl
-        sha256: 177a05aece5a8ca5266fd3c448abb47b8d352f09d477d3ca8332db4d89b24304
+        url: https://files.pythonhosted.org/packages/da/46/7d84138a60a8bd796825b2d38ebe92d0d16501ca57d501b7c5d677401bbc/tomlkit-0.15.2-py3-none-any.whl
+        sha256: 05562412163a3037b94497385fb7f9204c637bc605af7a48199e41cf2272f437
   - name: python3-pyserial
     buildsystem: simple
     build-commands:
